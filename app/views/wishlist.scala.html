@@ -2,238 +2,151 @@
 @import html5.tags.html._
 @(user: models.User)
 @main("Wishlist",user){
-    
+
     <div id="access-nav">
 
-      <div class="container">
+        <div class="container">
 
-          <ul class="wishbar">
+            <ul class="wishbar">
 
-              <a href="#Index"> <i class="fa fa-home" aria-hidden="true">
-              </i> > </a>
-              <a href="#Account"> Account > </a>
-              <a href="#Login"> Login > </a>
-              <a href="#Search"> Browse > </a>
+                <a href="@routes.HomeController.index()"> <i class="fa fa-home" aria-hidden="true">
+                </i> > </a>
+                <a href="@routes.HomeController.account()"> Account > </a>
+                <a href="@routes.LoginController.login()"> Login > </a>
+                <a href="@routes.HomeController.searchProduct()"> Browse > </a>
 
-          </ul> 
+            </ul>
 
-      </div>
-      <!-- End container-->
+        </div>
+            <!-- End container-->
 
     </div>
-    <!--End of access nav-->
+        <!--End of access nav-->
 
     <div class="container"> <!--Have fluid before-->
 
-      <div class="row"> 
+        <div class="row">
 
             <div class ="col-lg-12 col-sm-12 col-xs-12 col-md-12" id = "wishlist-details">
 
                 <h1 class="text-muted">My WishList</h1>
 
-                <div class="container-fluid">
+                <div class="container-fluid"> <!--id="border-temp"-->
 
                     <div class="row">
 
-                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                              <h2 class ="text-center">#ID</h2>
-                          </div><!--End of col-->
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <h2 class ="text-center">#ID</h2>
+                        </div><!--End of col-->
 
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                              <h2 class="text-center">Details</h2> 
-                          </div><!--End of col-->
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                            <h2 class="text-center">Details</h2>
+                        </div><!--End of col-->
 
-                          <div class="col-lg- 3col-md-3 col-sm-3 col-xs-3">
-                              <h2 class = "text-center">Action</h2> 
-                          </div><!--End of col-->                      
+                        <div class="col-lg- 3col-md-3 col-sm-3 col-xs-3">
+                            <h2 class = "text-center">Action</h2>
+                        </div><!--End of col-->
 
                     </div><!--End of row one-->
 
-                    <div class="row">
+                    <div class="row" id="test-line">
 
-                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                              <h4 class ="text-center">num</h4>
-                          </div><!--End of col-->
+                    @if(user.getWishlist() != null) {
+                        @for(i <- user.getWishlist.getWishItems()) {
 
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                            <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4 class ="text-center">@i.getProduct().getProductId()</h4>
+                            </div> <!--End of col-->
 
-                                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                      <img src="assets/img/wishlist/headphones.png" class = "img-responsive">
-                                  </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                <div class="row">
 
-                                  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                      <h4>Product Heading</h4> 
-                                      <h5>Product Description</h5> 
-                                      <p class = "text-muted">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
-                                  </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        <img src="assets/img/wishlist/headphones.png" class = "img-responsive">
+                                    </div>
 
-                            </div><!-- End inner col row-->
+                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                        <h4>@i.getProduct().getName()</h4>
+                                        <h5></h5>
+                                        <p class = "text-muted">"@i.getProduct().getDescription()"</p>
+                                    </div>
 
-                          </div><!--End of col-->
+                                </div> <!-- End inner col row-->
 
-                          <div class="col-lg- 3col-md-3 col-sm-3 col-xs-3" id="action-cols">
+                            </div> <!--End of col-->
 
-                            <div class="row">
+                            <div class="col-lg- 3col-md-3 col-sm-3 col-xs-3" id="action-cols">
 
-                                <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id ="add-to-cart">
+                                <div class="row">
 
-                                    <h5 class="text-muted text-center">Add to Cart</h5> 
-                                    <a href="#" class="btn btn-primary" aria-label="add to cart">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id ="add-to-cart">
+
+                                        <h5 class="text-muted text-center">Add to Cart</h5>
+                                        <a href="@routes.ShoppingController.addToBasket(i.getProduct().getProductId)"
+                                        class="btn btn-primary" aria-label="add to cart">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true">
+                                                </i>
+                                        </a>
+
+                                    </div>
+                                        <!-- End inner col 1 row 2-->
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id="del-from-wishlist">
+
+                                        <h5 class="text-muted text-center">Delete</h5>
+                                        <a href="@routes.WishlistCtrl.delWishlist(i.getProduct().getProductId())"
+                                        class="btn btn-danger" aria-label="Delete">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </a>
+
+                                    </div>
+                                        <!-- End inner col 2 row 2-->
 
                                 </div>
-                                <!-- End inner col 1 row 2-->
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id="del-from-wishlist">
-
-                                    <h5 class="text-muted text-center">Delete</h5> 
-                                    <a class="btn btn-danger" href="#" aria-label="Delete">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
-                                </div>
-                                <!-- End inner col 2 row 2-->
+                                    <!--End inner row-->
 
                             </div>
-                            <!--End inner row-->
-
-                          </div>
-                          <!--End of col-->
-
+                                <!--End of col-->
+                        }
+                    }
                     </div>
-                    <!-- End row two-->     
+                        <!-- End row two-->
 
-                     <div class="row"> <!-- Begin Row 3 -->
+                    <a href = "@routes.HomeController.searchProduct("")">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </button></a>
 
-                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                              <h4 class = "text-center">num</h4>
-                          </div><!--End of col-->
-
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                             
-                             <div class="row">
-
-                                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                      <img src="assets/img/wishlist/cpucooler.png" class = "img-responsive">
-                                  </div>
-
-                                  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                      <h4>Product Heading</h4> 
-                                      <h5>Product Description</h5> 
-                                      <p class = "text-muted">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
-                                  </div>
-
-                            </div><!-- End inner col row-->
-
-                          </div><!--End of col-->
-
-                          <div class="col-lg- 3col-md-3 col-sm-3 col-xs-3" id="action-cols">
-
-                            <div class="row">
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id ="add-to-cart">
-
-                                    <h5 class="text-muted text-center">Add to Cart</h5> 
-                                    <a href="#" class="btn btn-primary" aria-label="add to cart">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-
-                                </div>
-                                <!-- End inner col 1 row 3-->
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id="del-from-wishlist">
-
-                                    <h5 class=" text-muted text-center">Delete</h5> 
-                                    <a class="btn btn-danger" href="#" aria-label="Delete">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
-                                </div>
-                                <!-- End inner col 2 row 3-->
-
-                            </div>
-                            <!--End inner row-->
-
-                          </div><!--End of col 3 row 3-->
-
-                    </div><!-- End row three-->     
-
-                    <div class="row"> <!-- Begin Row 4 -->
-
-                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                              <h4 class = "text-center">num</h4>
-                          </div><!--End of col-->
-
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-
-                            <div class="row">
-
-                                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                      <img src="assets/img/cpucooler.png" class = "img-responsive">
-                                  </div>
-
-                                  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                      <h4>Product Heading</h4> 
-                                      <h5>Product Description</h5> 
-                                      <p class = "text-muted">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
-                                  </div>
-
-                            </div><!-- End inner col row-->
-
-                          </div><!--End of col-->
-
-                          <div class="col-lg- 3col-md-3 col-sm-3 col-xs-3" id="action-cols">
-
-                            <div class="row">
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id ="add-to-cart">
-
-                                    <h5 class="text-muted text-center">Add to Cart</h5> 
-                                    <a href="#" class="btn btn-primary" aria-label="add to cart">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-
-                                </div>
-                                <!-- End inner col 1 row 3-->
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id="del-from-wishlist">
-
-                                    <h5 class="text-center text-muted">Delete</h5> 
-                                    <a class="btn btn-danger" href="#" aria-label="Delete">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
-                                </div>
-                                <!-- End inner col 2 row 3-->
-
-                            </div>
-                            <!--End inner row-->
-
-                          </div><!--End of col-->
-
-                    </div><!-- End row four-->                                               
-
+                    <a href = "@routes.WishlistCtrl.emptyWishlist()">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            Empty Wishlist
+                        </button></a>
 
                 </div><!--End of Inner-container-->
-                        
+
             </div><!--End of wishlist-details div(outer col)-->
-                
-      </div><!--End of complete wishlist table row-->
+
+        </div><!--End of complete wishlist table row-->
 
     </div><!--End of container-->
 
-     <div id="pagination">
+    <div id="pagination">
 
-      <div class="container">
+        <div class="container">
 
-          <ul class="pagebar"> <!-- Make page-bar -->
+            <ul class="pagebar"> <!-- Make page-bar -->
 
-              <p class ="whitetext"> <b> < Pages > </b></p>                          
+                <p class ="whitetext"> <b> < Pages > </b></p>
 
-          </ul> 
+            </ul>
 
-          <p class="text-center fluid" id="page-p">This Section is for the Pagination..</p>
+            <p class="text-center fluid" id="page-p">This Section is for the Pagination..</p>
 
-      </div>
-      <!-- End container-->
+        </div>
+            <!-- End container-->
 
     </div>
-    <!--End of Pagination div-->
+        <!--End of Pagination div-->
 
-    }
+}

@@ -586,7 +586,7 @@ body {
 #access-nav{
     /*margin-right: 3%;/**/
     /*margin-left: .5%;/*.5%;*/
-    background-color: #363441;/* #a24ef4;
+    background-color: #fff;/* #a24ef4;
     /*background-color: yellow;*/
     /* Just testing sizing for now */
 }
@@ -617,13 +617,19 @@ body {
 #wishlist-details{
     background-color: #ffffff;
     margin-bottom: 5%;
+    /*border-bottom: solid 2px #46349b;*/
 }
+
+/*#border-temp{
+    border-bottom: solid 2px #46349b;
+}*/
 
 #wishlist-details h1{
     padding-top: 0.8em;
+    /*background-color: yellow;*/
     padding-bottom: 1.2em;
     padding-left: 2.3em;
-    border-bottom: solid 2px #ccc; 
+    border-bottom: solid 2px #46349b;
     font-family: times;
 }
 
@@ -632,12 +638,12 @@ body {
     border-radius: 10px; 
     padding: 1.5em;
     list-style-type: none;
-    /*background-color: #ffffff;*/
-    margin-top: 2.5em;
-    margin-bottom: 2.5em;   
+    background-color: #ffffff;
+    margin-top: 3em;
+    margin-bottom: 1em;
     line-height: .1em; 
     font-size: 18px;
-    background-color: yellow;
+    /*background-color: yellow;*/
 }
 
 .pagebar{
@@ -657,10 +663,8 @@ body {
 }
 
 #pagination{
-    /*background-color:  #a24ef4; */
     background-color: #eee;
     border-top: solid 1px #ccc; 
-    /*border-bottom: solid 1px #ccc;*/
     padding-bottom: 3.5em;
     padding-top: 4.5em;
 }

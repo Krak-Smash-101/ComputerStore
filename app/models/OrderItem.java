@@ -5,7 +5,6 @@ import play.data.format.*;
 import play.data.validation.*;
 import com.avaje.ebean.*;
 
-
 // OrderItem entity managed by Ebean
 @Entity
 public class OrderItem extends Model {
@@ -18,6 +17,9 @@ public class OrderItem extends Model {
 
     @ManyToOne
     private Basket basket;
+
+    @ManyToOne
+    private Wishlist wishlist;
 
     @ManyToOne
     private Product product;
@@ -35,8 +37,6 @@ public class OrderItem extends Model {
         quantity = 1;
         price = p.getPrice();
     }
-
-
 
     // Increment quantity
     public void increaseQty() {
@@ -75,6 +75,14 @@ public class OrderItem extends Model {
 
     public void setOrder(ShopOrder order) {
         this.order = order;
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 
     public Basket getBasket() {

@@ -28,6 +28,7 @@
                                     <a href = "@routes.HomeController.product(i.getProduct.getProductId)" style = "color: inherit !important;">
                                     <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/>
                                     </div>
+                                    </a>
 
                                     <div class="col-sm-10">
                                         <h4 class="nomargin">@i.getProduct().getName()</h4>
@@ -37,11 +38,11 @@
                                 </div>
                                 <!-- End Row 1-->
                             </td>
-                            <td data-th="Price">@i.getProduct().getPrice()</td>
+                            <td data-th="Price">€@i.getProduct().getPrice()</td>
                             <td data-th="Quantity">
                                 <p class="nomargin text-center">@i.getQuantity</p>
                             </td>
-                            <td data-th="Subtotal" class="text-center">@i.getItemTotal</td>
+                            <td data-th="Subtotal" class="text-center">€@i.getItemTotal</td>
 
                             <td class="actions" data-th="">
                                 @if(i.getProduct().getQuantity > i.getQuantity()) {
@@ -60,7 +61,7 @@
                                 </a>
                             </td>
                         </tr>
-                                </a>
+                                <!--/a-->
                             }
                         <!-- End Row One -->
                             }
@@ -89,7 +90,7 @@
                                 <a href = "@routes.ShoppingController.emptyBasket()">
                                     <button type="button" class="btn btn-danger">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
-                                    Empty Basket
+                                    Empty Cart
                                     </button></a>
                             </td>
 
@@ -98,7 +99,7 @@
 
                             <td class="hidden-xs text-center">
                             @if(user.getBasket() != null) {
-                                <strong>Total @user.getBasket().getBasketTotal()</strong>
+                                <strong>Total €@user.getBasket().getBasketTotal()</strong>
                             }
                             </td>
 

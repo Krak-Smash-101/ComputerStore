@@ -48,6 +48,12 @@ public class OrderItem extends Model {
         quantity -= 1;
     }
 
+    // Method needed for wishlist delete function..
+    public void minusQty() {
+        quantity -= 1;
+    }
+
+
     // Calculate and return total price for this order item
     public double getItemTotal() {
         return this.price * this.quantity;

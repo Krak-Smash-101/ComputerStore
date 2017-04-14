@@ -21,11 +21,9 @@ GET     /deleteproduct/:productId          controllers.AdminController.deletePro
 GET     /addtobasket/:productId            controllers.ShoppingController.addToBasket(productId: Long)
 GET     /removeitem/:productId             controllers.ShoppingController.removeOne(productId: Long)
 GET     /additem/:productId                controllers.ShoppingController.addOne(productId: Long)
-
 GET     /addtowishlist/:productId          controllers.WishlistCtrl.addToWishlist(productId: Long)
 GET     /delwishlist/:productId            controllers.WishlistCtrl.delWishlist(productId: Long)
 GET     /emptywishlist/                    controllers.WishlistCtrl.emptyWishlist()
-
 GET     /emptybasket                       controllers.ShoppingController.emptyBasket()
 GET     /deleteuser/:email                 controllers.AdminController.deleteUser(email: String)
 GET     /deleteblogpost/:blogpost          controllers.AdminController.deleteBlogPost(blogpost: Long)

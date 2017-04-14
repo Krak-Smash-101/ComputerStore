@@ -82,10 +82,6 @@ public class Basket extends Model {
     }
 
 
-
-
-
-
     public void removeAllItems() {
         for(OrderItem i: this.basketItems) {
             i.delete();

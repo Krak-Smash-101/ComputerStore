@@ -94,10 +94,12 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col xs-6" id="del-from-wishlist">
 
                                         <h5 class="text-muted text-center">Delete</h5>
-                                        <a href="@routes.WishlistCtrl.delWishlist(i.getProduct().getProductId())"
-                                        class="btn btn-danger" aria-label="Delete">
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                        </a>
+                                        @if(i.getProduct().getQuantity >= 0 ) { <!--getProduct().getProductId()-->
+                                            <a href="@routes.WishlistCtrl.delWishlist(i.getId)"
+                                            class="btn btn-danger" aria-label="Delete">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            </a>
+                                        }
 
                                     </div>
                                         <!-- End inner col 2 row 2-->

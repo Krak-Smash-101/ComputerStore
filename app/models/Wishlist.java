@@ -49,13 +49,17 @@ public class Wishlist extends Model {
             OrderItem i = itr.next();
             if (i.getId().equals(item.getId()))
             {
-                // Don't need quantity logic!!
-                //if (i.getQuantity() > 1 ) {
+                // Don't need quantity logic??
+                if (i.getQuantity() > 1 ) {
+                    i.minusQty();
+                }
+                else{
                 // delete object from db
                 item.delete();
                 // remove object from list
                 itr.remove();
                 break;
+                }
             }
         }
     }
@@ -99,3 +103,5 @@ public class Wishlist extends Model {
         this.user = user;
     }
 }
+
+/* "jdbc:h2:file:./data/ComputerStore" */
